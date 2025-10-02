@@ -22,7 +22,7 @@ class StudentProfileScreen extends StatelessWidget {
       "mother'sName": "Prajesh Shakya",
       "mother'sContact": "984646464646",
       "profileImage":
-      "https://www.w3schools.com/w3images/avatar2.png", // TODO: Replace with image URL from backend
+          "https://www.w3schools.com/w3images/avatar2.png", // TODO: Replace with image URL from backend
     };
 
     return Scaffold(
@@ -42,38 +42,50 @@ class StudentProfileScreen extends StatelessWidget {
           onPressed: () {
             Navigator.pushAndRemoveUntil(
               context,
-              MaterialPageRoute(builder: (context) => const StudentDashboardScreen()),
-                  (Route<dynamic> route) => false, // remove all previous routes
+              MaterialPageRoute(
+                  builder: (context) => const StudentDashboardScreen()),
+              (Route<dynamic> route) => false, // remove all previous routes
             ); // Goes back to previous screen
           },
         ),
         actions: [
-          IconButton(onPressed: (){
-            showDialog(context: context, builder: (BuildContext){
-              return AlertDialog(
-                title: Text('Logout'),content: Text('are you sure you wnat to logout'),actions: [
-                TextButton(onPressed: (){
-                  Navigator.pop(context);
-                }, child: Text('Cancel')),
-                TextButton(onPressed: (){
-                  // Clear student data from provider
-                  Provider.of<StudentProvider>(context, listen: false).clear();
+          IconButton(
+              onPressed: () {
+                showDialog(
+                    context: context,
+                    builder: (BuildContext) {
+                      return AlertDialog(
+                        title: Text('Logout'),
+                        content: Text('are you sure you want to logout'),
+                        actions: [
+                          TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: Text('Cancel')),
+                          TextButton(
+                            onPressed: () {
+                              // Clear student data from provider
+                              Provider.of<StudentProvider>(context,
+                                      listen: false)
+                                  .clear();
 
-                  // Navigate to login screen and remove all previous routes
-                  Navigator.pushNamedAndRemoveUntil(
-                    context,
-                    '/', // Your login route
-                        (route) => false,
-                  );
-                },
-                  child: const Text('Logout',style: TextStyle(color: Colors.red)),)
-              ],
-              );
-            });
-          }, icon: Icon(Icons.logout),
-              tooltip:'Logout'
-          ),
-
+                              // Navigate to login screen and remove all previous routes
+                              Navigator.pushNamedAndRemoveUntil(
+                                context,
+                                '/', // Your login route
+                                (route) => false,
+                              );
+                            },
+                            child: const Text('Logout',
+                                style: TextStyle(color: Colors.red)),
+                          )
+                        ],
+                      );
+                    });
+              },
+              icon: Icon(Icons.logout),
+              tooltip: 'Logout'),
         ],
         elevation: 0,
       ),
@@ -146,7 +158,10 @@ class StudentProfileScreen extends StatelessWidget {
                   },
                   child: const Text(
                     "Request Edit",
-                    style: TextStyle(color: Colors.white,fontSize: 16, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
@@ -176,7 +191,8 @@ class StudentProfileScreen extends StatelessWidget {
             TextSpan(
               text: value,
               style: const TextStyle(
-                color: Colors.black87, // Changed to black87 for better readability
+                color:
+                    Colors.black87, // Changed to black87 for better readability
                 fontSize: 14,
               ),
             ),
